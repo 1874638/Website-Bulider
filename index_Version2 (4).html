@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>간단 HTML 웹사이트 빌더</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="logo">🧱</span>
+      <span class="title">간단 HTML 웹사이트 빌더</span>
+    </div>
+    <div class="header-actions">
+      <label class="visually-hidden" for="lang-select">Language</label>
+      <select id="lang-select" class="select" aria-label="Language">
+        <option value="ko">한국어</option>
+        <option value="en">English</option>
+      </select>
+      <button id="load-template" class="btn ghost">샘플 템플릿 불러오기</button>
+      <button id="clear-all" class="btn ghost">초기화</button>
+      <button id="publish" class="btn primary">Publish</button>
+    </div>
+  </header>
+
+  <div class="app-root">
+    <aside class="palette">
+      <h2>블록 추가</h2>
+      <div class="blocks">
+        <button class="block-btn" data-type="heading">제목</button>
+        <button class="block-btn" data-type="paragraph">문단</button>
+        <button class="block-btn" data-type="image">이미지</button>
+        <button class="block-btn" data-type="button">버튼</button>
+        <button class="block-btn" data-type="divider">구분선</button>
+        <button class="block-btn" data-type="spacer">여백</button>
+      </div>
+      <hr />
+      <h3>페이지 설정</h3>
+      <div class="settings">
+        <label class="field">
+          <span>페이지 제목</span>
+          <input id="site-title" type="text" placeholder="예: 내 웹사이트" />
+        </label>
+        <label class="field">
+          <span>배경색</span>
+          <input id="bg-color" type="color" value="#ffffff" />
+        </label>
+        <label class="field">
+          <span>본문 최대 폭(px)</span>
+          <input id="max-width" type="number" value="900" min="600" max="1400" />
+        </label>
+      </div>
+    </aside>
+
+    <main class="canvas-wrap">
+      <div class="canvas-hint">좌측에서 블록을 추가해 시작하세요</div>
+      <div id="canvas" class="canvas"></div>
+    </main>
+  </div>
+
+  <!-- 편집 패널 (모달) -->
+  <div id="editor-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="editor-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="editor-title">블록 편집</h3>
+        <button id="editor-close" class="icon-btn" aria-label="닫기">✕</button>
+      </div>
+      <div id="editor-body" class="modal-body">
+        <!-- 동적 폼 렌더링 -->
+      </div>
+      <div class="modal-footer">
+        <button id="editor-cancel" class="btn ghost">취소</button>
+        <button id="editor-save" class="btn primary">저장</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Publish 모달 -->
+  <div id="publish-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="publish-title">
+    <div class="modal-content large">
+      <div class="modal-header">
+        <h3 id="publish-title">생성된 index.html</h3>
+        <button id="publish-close" class="icon-btn" aria-label="닫기">✕</button>
+      </div>
+      <div class="modal-body">
+        <textarea id="export-code" readonly></textarea>
+      </div>
+      <div class="modal-footer">
+        <button id="copy-code" class="btn">복사하기</button>
+        <button id="download-code" class="btn primary">index.html 다운로드</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
